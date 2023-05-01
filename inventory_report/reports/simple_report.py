@@ -34,7 +34,7 @@ class SimpleReport:
         companies = Counter(company["nome_da_empresa"] for company in products)
 
         return (
-            f"Data de fabricação mais antiga: {min(earliest_date)}"
-            f"Data de validade mais próxima: {closest_date}"
+            f"Data de fabricação mais antiga: {min(earliest_date)}\n"
+            f"Data de validade mais próxima: {closest_date}\n"
             f"Empresa com mais produtos: {companies.most_common(1)[0][0]}"
         )
