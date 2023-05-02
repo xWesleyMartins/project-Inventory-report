@@ -1,15 +1,16 @@
 import xmltodict
-from inventory_report.importer import Importer
+
+from inventory_report.importer.importer import Importer
 
 
 class XmlImporter(Importer):
     @staticmethod
     def import_data(path):
-        try:
-            with open(path) as file:
-                data = file.read()
-                return [
-                    row for row in xmltodict.parse(data)["dataset"]["record"]
-                ]
-        except ValueError:
+        if not path.endswith(".xml"):
             raise ValueError("Arquivo inválido")
+        try:
+            with open(path, "r") as file:
+                content = xmltodict.parse(file.read())["dataset"]["record"]
+                return list(content)
+        except FileNotFoundError:
+            raise ValueError("Arquivo não encontrado")
