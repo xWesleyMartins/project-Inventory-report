@@ -17,7 +17,7 @@ def main():
     }
 
     file_path = sys.argv[1]
-    file_extension = file_path[file_path.rfind(".")]
+    file_extension = file_path[file_path.rfind(".") :]
 
     if file_extension not in importer_dict:
         print(f"Extensão inválida: {file_extension}", file=sys.stderr)
